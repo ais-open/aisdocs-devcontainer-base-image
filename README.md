@@ -1,0 +1,1 @@
+# aisdocs-devcontainer-base-image
