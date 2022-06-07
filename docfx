@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo mono /usr/local/bin/docfx.2.56.7/docfx.exe "$@" 
