@@ -1,0 +1,22 @@
+
+  {
+	"name": "aisDocs",
+	"build": {
+		"dockerfile":"Dockerfile"
+	},
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.defaultProfile.linux": "/bin/bash"
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-vscode.powershell",
+		"docsmsft.docs-authoring-pack",
+		"DavidAnson.vscode-markdownlint"
+	],
+	"remoteUser": "vscode",
+	"features": {
+		"node": "lts",
+		"powershell": "latest"
+	}
+}
