@@ -17,7 +17,7 @@ jobs:
 
           # Update this based on your image name and the path of the .devcontainer folder in your repository
           FOLDER_WITH_DOT_DEVCONTAINER="."
-          IMAGE_NAME="aisdocs-base:docfx-v2.56.7"
+          IMAGE_NAME="aisdocs-base:docfx-2.56.7"
           IMAGE_REPOSITORY="$(echo "ghcr.io/${{ github.repository_owner }}/${IMAGE_NAME}" | tr '[:upper:]' '[:lower:]')"
 
           # [Optional] Enable buildkit, set output to plain text for logging
@@ -29,5 +29,5 @@ jobs:
           devcontainer build --no-cache --image-name "${IMAGE_REPOSITORY}" "${FOLDER_WITH_DOT_DEVCONTAINER}"
 
           # Push image to GitHub Container Registry
-          echo "${{ github.token }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          echo "${{ secrets.PACKAGE_WRITE }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
           docker push "${IMAGE_REPOSITORY}"
