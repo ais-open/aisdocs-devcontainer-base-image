@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 # ** [Optional] Uncomment this section to install additional packages. **
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends git-lfs
+    && apt-get -y install --no-install-recommends git-lfs ufw nginx
 
 RUN apt install apt-transport-https dirmngr gnupg ca-certificates -y \
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
@@ -29,3 +29,12 @@ RUN rm -rf /docfx.$DOCFX_VERSION
 COPY docfx /usr/local/bin/docfx
 
 RUN chmod 777 /usr/local/bin/docfx
+
+RUN chown -R vscode:vscode /var/log/nginx
+RUN chown -R vscode:vscode /var/lib/nginx
+RUN chown -R vscode:vscode /run
+RUN chown -R vscode:vscode /var/www/html
+
+COPY index.html /var/www/html
+
+CMD ["nginx", "-g","daemon off;"]
