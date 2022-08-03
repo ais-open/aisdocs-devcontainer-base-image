@@ -34,7 +34,9 @@ RUN chown -R vscode:vscode /var/log/nginx
 RUN chown -R vscode:vscode /var/lib/nginx
 RUN chown -R vscode:vscode /run
 RUN chown -R vscode:vscode /var/www/html
+RUN chown -R vscode:vscode /etc/nginx
 
 COPY index.html /var/www/html
+COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD ["nginx", "-g","daemon off;"]
