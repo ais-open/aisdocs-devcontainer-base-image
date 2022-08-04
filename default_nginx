@@ -19,8 +19,8 @@
 # Default server configuration
 #
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
 
         # SSL configuration
         #
@@ -48,11 +48,7 @@ server {
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/index.html $uri/  =404;
-        }
-
-        location ~ ^/[0-9a-z]+/ {
-                try_files $uri $uri/index.html =404;
+                try_files $uri $uri/  =404;
         }
 
         # pass PHP scripts to FastCGI server
